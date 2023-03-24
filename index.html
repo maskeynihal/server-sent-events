@@ -8,11 +8,16 @@
   </head>
   <body>
     <h1>Server Sent Events</h1>
+    <p id="event"></p>
 
     <script>
       let s = new EventSource("http://localhost:8888/stream");
 
-      s.onmessage = console.log;
+      s.onmessage = (s) => {
+        const e = document.getElementById("event");
+
+        e.innerHTML = s.data;
+      };
     </script>
   </body>
 </html>
